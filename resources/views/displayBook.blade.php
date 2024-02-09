@@ -2,7 +2,10 @@
 
 @section('container')
 
+
+<img src="{{ asset('/storage/book_images/'.$book->image) }}" alt="{{ $book->title }} Cover">
 <h2>Book Title: {{ $book['title'] }}</h2>
+<h3>Book Genre: {{ $book->genre->name }}</h3>
 <p>Author: {{ $book['author'] }}</p>
 <p>Description: {{ $book['description'] }}</p>
 
@@ -14,4 +17,12 @@
 
 <a href="/edit-book/{{ $book->id }}"><button type="button" class="btn btn-warning mt-2">Edit</button></a>
 
+<h2 class="mt-5">Bought By:</h2>
+<ul>
+@foreach($book->customer as $customer)
+
+<li>{{ $customer->name }}</li>
+
+@endforeach()
+</ul>
 @endsection

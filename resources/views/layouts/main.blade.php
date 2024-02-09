@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid ms-5">
@@ -20,11 +21,30 @@
                 <a class="nav-link {{ ($title === 'Homepage')? 'active' : '' }}" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ ($title === 'Library')? 'active' : '' }}" href="/library">Library</a>
+                <a class="nav-link {{ ($title === 'Library')? 'active' : '' }}" href="{{ route('library') }}">Library</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ ($title === 'About Page')? 'active' : '' }}" href="/about">About</a>
               </li>
+              @can('admin')
+              <li class="nav-item">
+                <a class="nav-link {{ ($title === 'Genres')? 'active' : '' }}" href="/genres">Genres</a>
+              </li>
+              @endcan
+            </ul>
+            <ul class="navbar-nav ms-auto me-5">
+              @auth
+              <li class="nav-item">
+                <form action="/logout" method="post">
+                @csrf
+                <a class="nav-link"><button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-right me-1"></i>Logout</button></a>
+                </form>
+              </li>
+              @else
+              <li class="nav-item">
+                <a href='/login' class="nav-link"><button class="btn btn-primary"><i class="bi bi-box-arrow-in-right me-1"></i></i>Login</button></a>
+              </li>
+              @endauth
             </ul>
           </div>
         </div>

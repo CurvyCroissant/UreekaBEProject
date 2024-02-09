@@ -3,26 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class bookController extends Controller
 {
     public function createBook(){
-        return view('createBook', ['title' => 'Create Book']);
+        $genres = Genre::all();
+
+        return view('createBook', [
+            'title' => 'Create Book',
+            'genres' => $genres
+        ]);
     }
 
     public function store(Request $request){
 
         $request->validate([
             'title' => 'required|min:5|max:80',
+            'genre_id' => 'required',
             'author' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'image' => 'required'
         ]);
 
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $filename = $request->title.'-'.$request->genre_id.'.'.$extension;
+        $request->file('image')->storeAs('/public/book_images', $filename);
         Book::create([
             'title' => $request->title,
+            'genre_id' => $request->genre_id,
             'author' => $request->author,
-            'description' => $request->description
+            'description' => $request->description,
+            'image' => $filename
         ]);
 
         return redirect('/');
