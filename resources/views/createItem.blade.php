@@ -16,13 +16,13 @@
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">Category</label>
-      <select class="form-select" id="category" aria-describedby="emailHelp" name = "genre_id" value = "{{ old('genre_id') }}">
+      <select class="form-select" id="category" aria-describedby="emailHelp" name = "category_id" value = "{{ old('category_id') }}">
         <option selected>Select One</option>
-        @foreach($genres as $genre)
-        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
       </select>
-      @error('genre_id')
+      @error('category_id')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>

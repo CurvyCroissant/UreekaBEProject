@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $title === 'Categories' ? 'active' : '' }}" href="{{ route('categories') }}">Categories</a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link {{ $title === 'Cart' ? 'active' : '' }}" href="{{ route('Cart') }}">Cart</a>
+                        </li> --}}
                     @endauth
 
                 </ul>

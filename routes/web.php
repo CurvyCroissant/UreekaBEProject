@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\bookController;
-use App\Http\Controllers\genreController;
+use App\Http\Controllers\itemController;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\registerController;
@@ -15,24 +15,20 @@ Route::get('/', function () {
 });
 
 
-//Book Controller
-Route::get('/library', [bookController::class, 'index'])->name('library')->middleware(['auth']);
-Route::get('/create-item', [bookController::class, 'createBook'])->middleware(['auth', 'is_admin']);
-Route::POST('/store-item', [bookController::class, 'store'])->middleware(['auth', 'is_admin']);
-Route::get('/display-item/{book:id}', [bookController::class, 'display'])->middleware(['auth']);
-Route::DELETE('/delete-item/{book:id}', [bookController::class, 'delete'])->middleware(['auth', 'is_admin']);
-Route::get('/edit-item/{book:id}', [bookController::class, 'edit'])->middleware(['auth', 'is_admin']);
-Route::PATCH('/update-item/{book:id}', [bookController::class, 'update'])->middleware(['auth', 'is_admin']);
+//Item Controller
+Route::get('/library', [itemController::class, 'index'])->name('library')->middleware(['auth']);
+Route::get('/create-item', [itemController::class, 'createItem'])->middleware(['auth', 'is_admin']);
+Route::POST('/store-item', [itemController::class, 'store'])->middleware(['auth', 'is_admin']);
+Route::get('/display-item/{item:id}', [itemController::class, 'display'])->middleware(['auth']);
+Route::DELETE('/delete-item/{item:id}', [itemController::class, 'delete'])->middleware(['auth', 'is_admin']);
+Route::get('/edit-item/{item:id}', [itemController::class, 'edit'])->middleware(['auth', 'is_admin']);
+Route::PATCH('/update-item/{item:id}', [itemController::class, 'update'])->middleware(['auth', 'is_admin']);
 
 
-//Genre Controller
-Route::get('/categories', [genreController::class, 'index'])->name('categories')->middleware(['auth']);
-Route::get('/create-category', [genreController::class, 'createGenre'])->middleware(['auth', 'is_admin']);
-Route::POST('/store-category', [genreController::class, 'store'])->middleware(['auth', 'is_admin']);
-
-
-//customerController
-Route::get('/customer/{customer:id}', [customerController::class, 'display']);
+//Category Controller
+Route::get('/categories', [categoryController::class, 'index'])->name('categories')->middleware(['auth']);
+Route::get('/create-category', [categoryController::class, 'createCategory'])->middleware(['auth', 'is_admin']);
+Route::POST('/store-category', [categoryController::class, 'store'])->middleware(['auth', 'is_admin']);
 
 
 //loginController

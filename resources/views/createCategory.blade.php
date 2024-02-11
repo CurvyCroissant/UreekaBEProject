@@ -8,7 +8,7 @@
 <form action = "/store-category" method="post" class="mt-5">
     @csrf
     <div class="mb-3">
-      <label for="name" class="form-label">Category Name</label>
+      <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name = "name" value = "{{ old('name') }}">
       @error('name')
       <div class="alert alert-danger">{{ $message }}</div>

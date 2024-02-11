@@ -23,13 +23,13 @@ unset($__errorArgs, $__bag); ?>
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">Category</label>
-      <select class="form-select" id="category" aria-describedby="emailHelp" name = "genre_id" value = "<?php echo e(old('genre_id')); ?>">
+      <select class="form-select" id="category" aria-describedby="emailHelp" name = "category_id" value = "<?php echo e(old('category_id')); ?>">
         <option selected>Select One</option>
-        <?php $__currentLoopData = $genres; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genre): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <option value="<?php echo e($genre->id); ?>"><?php echo e($genre->name); ?></option>
+        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </select>
-      <?php $__errorArgs = ['genre_id'];
+      <?php $__errorArgs = ['category_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -89,4 +89,4 @@ unset($__errorArgs, $__bag); ?>
 </form>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/createBook.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/createItem.blade.php ENDPATH**/ ?>

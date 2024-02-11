@@ -5,9 +5,9 @@
     <h1 class="mb-4">Catalog</h1>
     <br>
 
-    <?php $__currentLoopData = $books; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="mb-4">
-            <h4><strong>- <a href="/display-item/<?php echo e($book['id']); ?>"><?php echo e($book['name']); ?></strong></h4></a>
+            <h4><strong>- <a href="/display-item/<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></strong></h4></a>
         </div>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

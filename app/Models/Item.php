@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Item extends Model
 {
     use HasFactory;
 
@@ -13,15 +13,18 @@ class Book extends Model
         'name',
         'price',
         'quantity',
-        'genre_id',
+        'category_id',
         'image'
     ];
     
-    public function genre(){
-        return $this->belongsTo(Genre::class);
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
-    public function customer(){
-        return $this->belongsToMany(Customer::class);
+    public function cart(){
+        return $this->belongsTo(Cart::class);
     }
+
+    protected $table = 'items';
+
 }

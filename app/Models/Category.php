@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,10 @@ class Genre extends Model
         'name'
     ];
 
-    public function book(){
-        return $this->hasMany(Book::class);
+    public function item(){
+        return $this->hasMany(Item::class);
     }
+
+    protected $table = 'categories';
+
 }

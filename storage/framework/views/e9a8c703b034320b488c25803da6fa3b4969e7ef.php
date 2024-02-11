@@ -8,7 +8,7 @@
 <form action = "/store-category" method="post" class="mt-5">
     <?php echo csrf_field(); ?>
     <div class="mb-3">
-      <label for="name" class="form-label">Category Name</label>
+      <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name = "name" value = "<?php echo e(old('name')); ?>">
       <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -25,4 +25,4 @@ unset($__errorArgs, $__bag); ?>
 </form>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/createGenre.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/createCategory.blade.php ENDPATH**/ ?>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class genreController extends Controller
+class categoryController extends Controller
 {
-    public function createGenre(){
-        return view('createGenre',[
+    public function createCategory(){
+        return view('createCategory',[
             'title' => 'Create Category'
         ]);
     }
@@ -18,7 +18,7 @@ class genreController extends Controller
             'name' => 'required|string'
         ]);
 
-        Genre::create([
+        Category::create([
             'name' => $request->name
         ]);
 
@@ -26,9 +26,9 @@ class genreController extends Controller
     }
 
     public function index(){
-        return view('GenresIndex',[
+        return view('CategoriesIndex',[
             'title' => 'Categories',
-            'genres' => Genre::all()
+            'categories' => Category::all()
         ]);
     }
 }

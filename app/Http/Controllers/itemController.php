@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\Genre;
+use App\Models\Item;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class bookController extends Controller
+class itemController extends Controller
 {
-    public function createBook(){
-        $genres = Genre::all();
+    public function createItem(){
+        $categories = Category::all();
 
-        return view('createBook', [
+        return view('createItem', [
             'title' => 'Create Item',
-            'genres' => $genres
+            'categories' => $categories
         ]);
     }
 
@@ -21,18 +21,18 @@ class bookController extends Controller
 
         $request->validate([
             'name' => 'required|string|min:5|max:80',
-            'genre_id' => 'required',
+            'category_id' => 'required',
             'price' => 'required|integer',
             'quantity' => 'required|integer',
             'image' => 'required'
         ]);
 
         $extension = $request->file('image')->getClientOriginalExtension();
-        $filename = $request->name.'-'.$request->genre_id.'.'.$extension;
+        $filename = $request->name.'-'.$request->category_id.'.'.$extension;
         $request->file('image')->storeAs('public/images', $filename);
-        Book::create([
+        Item::create([
             'name' => $request->name,
-            'genre_id' => $request->genre_id,
+            'category_id' => $request->category_id,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'image' => $filename
@@ -42,48 +42,47 @@ class bookController extends Controller
     }
 
     public function index(){
-        $books = Book::all();
+        $items = Item::all();
 
         return view('library', [
             'title' => 'Library',
-            'books' => $books
+            'items' => $items
         ]);
     }
 
-    public function display(Book $book){
-        // $book = Book::findOrFail($id);
-        return view('displayBook', [
+    public function display(Item $item){
+        return view('displayItem', [
             'title' => 'Item Display',
-            'book' => $book           
+            'item' => $item           
         ]);
     }
 
-    public function delete(Book $book){
-        $book->delete();
+    public function delete(Item $item){
+        $item->delete();
         return redirect('/library');
     }
 
-    public function edit(Book $book){
-        return view('editBook', [
+    public function edit(Item $item){
+        return view('editItem', [
             'title' => 'Edit Item',
-            'book' => $book
+            'item' => $item
         ]);
     }
 
-    public function update(Book $book, Request $request){
+    public function update(Item $item, Request $request){
         $request->validate([
             'name' => 'required|string|min:5|max:80',
             'price' => 'required|integer',
             'quantity' => 'required|integer'
         ]);
 
-        $book->update([
+        $item->update([
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity
         ]);
 
-        return redirect('/display-item/' . $book->id);
+        return redirect('/display-item/' . $item->id);
     }
 }
 

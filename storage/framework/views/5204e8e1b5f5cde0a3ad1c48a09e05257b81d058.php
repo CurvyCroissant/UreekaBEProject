@@ -30,6 +30,7 @@
                         <li class="nav-item">
                             <a class="nav-link <?php echo e($title === 'Categories' ? 'active' : ''); ?>" href="<?php echo e(route('categories')); ?>">Categories</a>
                         </li>
+                        
                     <?php endif; ?>
 
                 </ul>
