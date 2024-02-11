@@ -10,16 +10,7 @@ use App\Http\Controllers\registerController;
 
 Route::get('/', function () {
     return view('welcome', [
-        'title' => 'Homepage'
-    ]);
-});
-
-
-Route::get('/about', function(){
-    return view('about', [
-        'title' => 'About Page',
-        'name' => 'Rafael',
-        'email' => 'rafze04@gmail.com'
+        'title' => 'Home Page'
     ]);
 });
 
@@ -48,6 +39,7 @@ Route::get('/customer/{customer:id}', [customerController::class, 'display']);
 Route::get('/login', [loginController::class, 'login'])->name('login')->middleware('guest');
 Route::POST('/login', [loginController::class, 'authenticate']);
 Route::POST('/logout', [loginController::class, 'logout'])->middleware('auth');
+
 
 //registerController
 Route::get('/register', [registerController::class, 'register'])->middleware('guest');

@@ -10,15 +10,17 @@ class registerController extends Controller
 {
     public function register(){
         return view('register.index',[
-            'title' => 'register'
+            'title' => 'User Register'
         ]);
     }
 
     public function store(Request $request){
+
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:4|max:50'
+            'name' => 'required|min:3|max:40',
+            'email' => 'required|string|email:dns|ends_with:@gmail.com',
+            'password' => 'required|string|min:6|max:12',
+            'phone' => 'required|string|regex:/^08\d+/',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);

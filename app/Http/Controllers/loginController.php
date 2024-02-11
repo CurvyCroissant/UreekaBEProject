@@ -9,15 +9,16 @@ class loginController extends Controller
 {
     public function login(){
         return view('login.index',[
-            'title' => 'Login'
+            'title' => 'User Login'
         ]);
     }
 
     public function authenticate(Request $request){
 
         $credentials = $request->validate([
-            'email' => ['required', 'email:dns'],
-            'password' => ['required'],
+            'email' => ['required', 'string', 'email:dns', 'ends_with:@gmail.com'],
+            'password' => ['required', 'string', 'min:6', 'max:12'],
+            'phone' => ['required', 'string', 'regex:/^08\d+/'],
         ]);
         
         if(Auth::attempt($credentials)){
@@ -27,8 +28,10 @@ class loginController extends Controller
         }
         
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'email' => 'This email does not match our records.',
+            'phone' => 'This phone number does not match our records.',
+        ])->onlyInput('email', 'phone');
+        
 
     }
 
