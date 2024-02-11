@@ -17,36 +17,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Rafael Zefanya Jaya Surya',
-            'email' => 'rafze04@gmail.com',
-            'password' => bcrypt('password')
-        ]);
+    //     User::create([
+    //         'name' => 'Rafael Zefanya Jaya Surya',
+    //         'email' => 'rafze04@gmail.com',
+    //         'password' => bcrypt('password')
+    //     ]);
 
-        User::create([
-            'name' => 'Steven Soesono',
-            'email' => 'steven@gmail.com',
-            'password' => bcrypt('password')
-        ]);
+    //     User::create([
+    //         'name' => 'Steven Soesono',
+    //         'email' => 'steven@gmail.com',
+    //         'password' => bcrypt('password')
+    //     ]);
 
-        User::create([
-            'name' => 'Rafael Widjaya',
-            'email' => 'rafael@gmail.com',
-            'password' => bcrypt('password')
-        ]);
+    //     User::create([
+    //         'name' => 'Rafael Widjaya',
+    //         'email' => 'rafael@gmail.com',
+    //         'password' => bcrypt('password')
+    //     ]);
 
-        Genre::create([
-            'name' => 'Sci-Fi'
-        ]);
+    //     Genre::create([
+    //         'name' => 'Sci-Fi'
+    //     ]);
 
-        Genre::create([
-            'name' => 'Fantasy'
-        ]);
+    //     Genre::create([
+    //         'name' => 'Fantasy'
+    //     ]);
 
-        Genre::create([
-            'name' => 'Romance'
-        ]);
+    //     Genre::create([
+    //         'name' => 'Romance'
+    //     ]);
 
-        Book::factory(10)->create();
+    //     Book::factory(10)->create();
     }
 }

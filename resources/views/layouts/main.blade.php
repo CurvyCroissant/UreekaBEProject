@@ -11,7 +11,7 @@
   </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid ms-5">
           <a class="navbar-brand" href="/">PT Meksiko</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
               <li class="nav-item">
                 <a class="nav-link {{ ($title === 'Library')? 'active' : '' }}" href="{{ route('library') }}">Library</a>
               </li>
-              
+
               @can('admin')
               <li class="nav-item">
                 <a class="nav-link {{ ($title === 'Genres')? 'active' : '' }}" href="/genres">Genres</a>
@@ -35,12 +35,12 @@
               <li class="nav-item">
                 <form action="/logout" method="post">
                 @csrf
-                <a class="nav-link"><button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-right me-1"></i>Logout</button></a>
+                <a class="nav-link"><button type="submit" class="btn btn-dark"><i class="bi bi-box-arrow-right me-1"></i>Logout</button></a>
                 </form>
               </li>
               @else
               <li class="nav-item">
-                <a href='/login' class="nav-link"><button class="btn btn-primary"><i class="bi bi-box-arrow-in-right me-1"></i></i>Login</button></a>
+                <a href='/login' class="nav-link"><button class="btn btn-dark"><i class="bi bi-box-arrow-in-right me-1"></i></i>Login</button></a>
               </li>
               @endauth
             </ul>
