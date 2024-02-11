@@ -10,7 +10,7 @@ class registerController extends Controller
 {
     public function register(){
         return view('register.index',[
-            'title' => 'User Register'
+            'title' => 'New User Registration'
         ]);
     }
 

@@ -10,25 +10,25 @@ use App\Http\Controllers\registerController;
 
 Route::get('/', function () {
     return view('welcome', [
-        'title' => 'Home Page'
+        'title' => 'PT Meksiko'
     ]);
 });
 
 
 //Book Controller
-Route::get('/library', [bookController::class, 'index'])->name('library')->middleware('auth');
-Route::get('/create-book', [bookController::class, 'createBook']);
-Route::POST('/store-book', [bookController::class, 'store']);
-Route::get('/display-book/{book:id}', [bookController::class, 'display']);
-Route::DELETE('/delete-book/{book:id}', [bookController::class, 'delete']);
-Route::get('/edit-book/{book:id}', [bookController::class, 'edit']);
-Route::PATCH('/update-book/{book:id}', [bookController::class, 'update']);
+Route::get('/library', [bookController::class, 'index'])->name('library')->middleware(['auth']);
+Route::get('/create-item', [bookController::class, 'createBook'])->middleware(['auth', 'is_admin']);
+Route::POST('/store-item', [bookController::class, 'store'])->middleware(['auth', 'is_admin']);
+Route::get('/display-item/{book:id}', [bookController::class, 'display'])->middleware(['auth']);
+Route::DELETE('/delete-item/{book:id}', [bookController::class, 'delete'])->middleware(['auth', 'is_admin']);
+Route::get('/edit-item/{book:id}', [bookController::class, 'edit'])->middleware(['auth', 'is_admin']);
+Route::PATCH('/update-item/{book:id}', [bookController::class, 'update'])->middleware(['auth', 'is_admin']);
 
 
 //Genre Controller
-Route::get('/genres', [genreController::class, 'index'])->middleware('is_admin');
-Route::get('/create-genre', [genreController::class, 'createGenre'])->middleware('is_admin');
-Route::POST('/store-genre', [genreController::class, 'store'])->middleware('is_admin');
+Route::get('/categories', [genreController::class, 'index'])->name('categories')->middleware(['auth']);
+Route::get('/create-category', [genreController::class, 'createGenre'])->middleware(['auth', 'is_admin']);
+Route::POST('/store-category', [genreController::class, 'store'])->middleware(['auth', 'is_admin']);
 
 
 //customerController

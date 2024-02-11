@@ -9,25 +9,25 @@ class genreController extends Controller
 {
     public function createGenre(){
         return view('createGenre',[
-            'title' => 'Create Genre'
+            'title' => 'Create Category'
         ]);
     }
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|min:3'
+            'name' => 'required|string'
         ]);
 
         Genre::create([
             'name' => $request->name
         ]);
 
-        return redirect('/create-genre');
+        return redirect('/categories');
     }
 
     public function index(){
         return view('GenresIndex',[
-            'title' => 'Genres',
+            'title' => 'Categories',
             'genres' => Genre::all()
         ]);
     }

@@ -3,18 +3,18 @@
 
 @section('container')
 
-<h1>Create Genre</h1>
+<h1>Create Category</h1>
 
-<form action = "/store-genre" method = "POST" class="mt-5">
+<form action = "/store-category" method="post" class="mt-5">
     @csrf
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Genre Name</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "name" value = "{{ old('name') }}">
+      <label for="name" class="form-label">Category Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name = "name" value = "{{ old('name') }}">
       @error('name')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>
 
 @endsection

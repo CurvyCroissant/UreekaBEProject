@@ -2,7 +2,7 @@
 
 
 @section('container')
-<h1 class="mb-4">User Login</h1>
+<h1 class="mb-4">Login</h1>
 
 <form action = "/login" method = "POST">
     @csrf
@@ -29,7 +29,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
     <small class="mt-3" style="display:block">Don't have an account yet? <a href="/register">Register Here!</a></small>
-    <small class="mt-3" style="display:block">Admin? <a href="/">Login Here!</a></small>
 </form>
 
 @endsection

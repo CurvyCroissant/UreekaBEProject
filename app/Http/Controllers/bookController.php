@@ -12,7 +12,7 @@ class bookController extends Controller
         $genres = Genre::all();
 
         return view('createBook', [
-            'title' => 'Create Book',
+            'title' => 'Create Item',
             'genres' => $genres
         ]);
     }
@@ -20,25 +20,25 @@ class bookController extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'title' => 'required|min:5|max:80',
+            'name' => 'required|string|min:5|max:80',
             'genre_id' => 'required',
-            'author' => 'required',
-            'description' => 'required',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
             'image' => 'required'
         ]);
 
         $extension = $request->file('image')->getClientOriginalExtension();
-        $filename = $request->title.'-'.$request->genre_id.'.'.$extension;
-        $request->file('image')->storeAs('/public/book_images', $filename);
+        $filename = $request->name.'-'.$request->genre_id.'.'.$extension;
+        $request->file('image')->storeAs('public/images', $filename);
         Book::create([
-            'title' => $request->title,
+            'name' => $request->name,
             'genre_id' => $request->genre_id,
-            'author' => $request->author,
-            'description' => $request->description,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
             'image' => $filename
         ]);
 
-        return redirect('/');
+        return redirect('/library');
     }
 
     public function index(){
@@ -53,7 +53,7 @@ class bookController extends Controller
     public function display(Book $book){
         // $book = Book::findOrFail($id);
         return view('displayBook', [
-            'title' => 'Book Display',
+            'title' => 'Item Display',
             'book' => $book           
         ]);
     }
@@ -65,25 +65,25 @@ class bookController extends Controller
 
     public function edit(Book $book){
         return view('editBook', [
-            'title' => 'Edit Book',
+            'title' => 'Edit Item',
             'book' => $book
         ]);
     }
 
     public function update(Book $book, Request $request){
         $request->validate([
-            'title' => 'required|min:5|max:80',
-            'author' => 'required',
-            'description' => 'required'
+            'name' => 'required|string|min:5|max:80',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer'
         ]);
 
         $book->update([
-            'title' => $request->title,
-            'author' => $request->author,
-            'description' => $request->description
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity
         ]);
 
-        return redirect('/library');
+        return redirect('/display-item/' . $book->id);
     }
 }
 
