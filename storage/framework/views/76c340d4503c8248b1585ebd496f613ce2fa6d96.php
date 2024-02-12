@@ -20,9 +20,22 @@
                 <?php echo method_field('DELETE'); ?>
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to DELETE?')">Delete</button>
             </form>
-        <?php else: ?>
-            <a href="<?php echo e(url('/')); ?>" class="btn btn-dark">Add to Cart</a>
         <?php endif; ?>
+
+        <br>
+
+        <?php if(auth()->check() && $cart): ?>
+            <form action="<?php echo e(route('cart.store', $cart->id)); ?>" method="post">
+                <?php echo csrf_field(); ?>
+                <input type="hidden" name="item_id" value="<?php echo e($item->id); ?>">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+        <?php elseif(auth()->check() && !$cart): ?>
+            <p>You don't have a cart. Please create one to add items.</p>
+        <?php else: ?>
+            <p>Please log in to add items to your cart.</p>
+        <?php endif; ?>
+
     <?php endif; ?>
 
 <?php $__env->stopSection(); ?>

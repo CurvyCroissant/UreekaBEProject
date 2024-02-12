@@ -14,7 +14,8 @@ class Item extends Model
         'price',
         'quantity',
         'category_id',
-        'image'
+        'cart_id',
+        'image',
     ];
     
     public function category(){
@@ -22,7 +23,7 @@ class Item extends Model
     }
 
     public function cart(){
-        return $this->belongsTo(Cart::class);
+        return $this->belongsToMany(Cart::class, 'item_cart');
     }
 
     protected $table = 'items';

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Item;
 
 class Cart extends Model
 {
@@ -11,7 +12,6 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id',
-        'item_id',
     ];
 
     public function user(){
@@ -19,7 +19,7 @@ class Cart extends Model
     }
 
     public function item(){
-        return $this->hasMany(Item::class);
+        return $this->belongsToMany(Item::class, 'item_cart');
     }
 
     public function invoice(){

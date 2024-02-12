@@ -5,11 +5,16 @@
     <h1 class="mb-4">Catalog</h1>
     <br>
 
-    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="mb-4">
-            <h4><strong>- <a href="/display-item/<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></strong></h4></a>
-        </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php if(count($items) > 0): ?>
+        <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="mb-4">
+                <h4><li><strong><a href="/display-item/<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></a></strong></li></h4>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php else: ?>
+        <p>There are no Items at the moment.</p>
+        <p>Only <strong>admins</strong> can edit.</p>
+    <?php endif; ?>
 
     <br>
     <?php if(auth()->guard()->check()): ?>

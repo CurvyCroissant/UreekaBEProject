@@ -51,9 +51,13 @@ class itemController extends Controller
     }
 
     public function display(Item $item){
+
+        $cart = auth()->user()->cart;
+
         return view('displayItem', [
             'title' => 'Item Display',
-            'item' => $item           
+            'item' => $item,
+            'cart' => $cart,
         ]);
     }
 

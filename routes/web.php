@@ -6,6 +6,8 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\invoiceController;
+use App\Http\Controllers\cartController;
 
 
 Route::get('/', function () {
@@ -40,3 +42,7 @@ Route::POST('/logout', [loginController::class, 'logout'])->middleware('auth');
 //registerController
 Route::get('/register', [registerController::class, 'register'])->middleware('guest');
 Route::POST('/register', [registerController::class, 'store']);
+
+//cartController
+Route::post('/cart/{cart:id}/add', [cartController::class, 'store'])->middleware('auth')->name('cart.store');
+Route::get('/cart/{cart:id}', [cartController::class, 'display'])->middleware('auth')->name('cart.display');

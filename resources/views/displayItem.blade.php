@@ -20,9 +20,22 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to DELETE?')">Delete</button>
             </form>
-        @else
-            <a href="{{ url('/') }}" class="btn btn-dark">Add to Cart</a>
         @endif
+
+        <br>
+
+        @if(auth()->check() && $cart)
+            <form action="{{ route('cart.store', $cart->id) }}" method="post">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+        @elseif(auth()->check() && !$cart)
+            <p>You don't have a cart. Please create one to add items.</p>
+        @else
+            <p>Please log in to add items to your cart.</p>
+        @endif
+
     @endauth
 
 @endsection
