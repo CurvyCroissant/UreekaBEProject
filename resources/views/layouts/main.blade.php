@@ -30,9 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $title === 'Categories' ? 'active' : '' }}" href="{{ route('categories') }}">Categories</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link {{ $title === 'Cart' ? 'active' : '' }}" href="/cart/{{ $userId }}">Cart</a>
-                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'Cart' ? 'active' : '' }}" href="{{ route('cart.display', ['cart' => auth()->user()->cart->id]) }}">Cart</a>
+                        </li>
                     @endauth
 
                 </ul>

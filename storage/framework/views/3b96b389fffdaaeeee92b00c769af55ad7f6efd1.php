@@ -5,13 +5,23 @@
     <br>
 
     <h3>Items:</h3>
-    <ul>
-        <?php $__empty_1 = true; $__currentLoopData = $cart->item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-            <li><strong>- <?php echo e($item->name); ?></strong></li>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-            <li>Your cart is currently empty..</li>
-        <?php endif; ?>
-    </ul>
+    <br>
+    <?php $__empty_1 = true; $__currentLoopData = $cart->item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+        <div class="mb-4">
+            <ul>
+                <li><strong><?php echo e($item->name); ?></strong></li>
+                <ul>
+                    <li>Category&nbsp;&nbsp;: <?php echo e($item->category->name); ?></li>
+                    <li>Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rp.<?php echo e($item->price); ?>,00.</li>
+                    <li>Quantity&nbsp;&nbsp;&nbsp;: <?php echo e($item->quantity); ?></li>
+                    <li>Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <img src="<?php echo e($item->image); ?>"
+                            alt="&nbsp;&nbsp;'<?php echo e($item->name); ?>' Image" height="50"></li>
+                </ul>
+            </ul>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+        <p>Your cart is currently empty.</p>
+    <?php endif; ?>
 
     <br>
 <?php $__env->stopSection(); ?>

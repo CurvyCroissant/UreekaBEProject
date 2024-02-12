@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\itemController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\customerController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\cartController;
@@ -14,7 +13,7 @@ Route::get('/', function () {
     return view('welcome', [
         'title' => 'PT Meksiko'
     ]);
-});
+})->name('home');
 
 
 //Item Controller
@@ -33,16 +32,24 @@ Route::get('/create-category', [categoryController::class, 'createCategory'])->m
 Route::POST('/store-category', [categoryController::class, 'store'])->middleware(['auth', 'is_admin']);
 
 
-//loginController
+//Login Controller
 Route::get('/login', [loginController::class, 'login'])->name('login')->middleware('guest');
 Route::POST('/login', [loginController::class, 'authenticate']);
 Route::POST('/logout', [loginController::class, 'logout'])->middleware('auth');
 
 
-//registerController
+//Register Controller
 Route::get('/register', [registerController::class, 'register'])->middleware('guest');
 Route::POST('/register', [registerController::class, 'store']);
 
-//cartController
+
+//Cart Controller
 Route::post('/cart/{cart:id}/add', [cartController::class, 'store'])->middleware('auth')->name('cart.store');
 Route::get('/cart/{cart:id}', [cartController::class, 'display'])->middleware('auth')->name('cart.display');
+
+
+// Invoice Controller
+Route::get('/create-invoice/{invoice:id}', [invoiceController::class, 'createInvoice'])->middleware('auth');
+Route::post('/store-invoice/{invoice:id}', [invoiceController::class, 'store'])->middleware('auth');
+Route::get('/display-invoice/{invoice:id}', [invoiceController::class, 'display'])->middleware('auth');
+

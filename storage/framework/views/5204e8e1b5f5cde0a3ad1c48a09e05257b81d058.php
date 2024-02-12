@@ -30,7 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link <?php echo e($title === 'Categories' ? 'active' : ''); ?>" href="<?php echo e(route('categories')); ?>">Categories</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo e($title === 'Cart' ? 'active' : ''); ?>" href="<?php echo e(route('cart.display', ['cart' => auth()->user()->cart->id])); ?>">Cart</a>
+                        </li>
                     <?php endif; ?>
 
                 </ul>

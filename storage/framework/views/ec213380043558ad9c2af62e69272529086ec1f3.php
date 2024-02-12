@@ -8,7 +8,9 @@
     <?php if(count($items) > 0): ?>
         <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="mb-4">
-                <h4><li><strong><a href="/display-item/<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></a></strong></li></h4>
+                <h4>
+                    <li><strong><a href="/display-item/<?php echo e($item['id']); ?>"><?php echo e($item['name']); ?></a></strong></li>
+                </h4>
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <?php else: ?>

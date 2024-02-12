@@ -29,7 +29,7 @@ class cartController extends Controller
     public function display(Cart $cart)
     {
         return view('cartDisplay', [
-            'title' => 'Cart Display',
+            'title' => 'Cart',
             'cart' => $cart
         ]);
     }

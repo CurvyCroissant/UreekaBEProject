@@ -7,9 +7,11 @@
 
     <?php if(count($categories) > 0): ?>
         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <h4>
-                <li><strong><a><?php echo e($category['name']); ?></a></strong></li>
-            </h4>
+            <div class="mb-4">
+                <h4>
+                    <li><strong><a><?php echo e($category['name']); ?></a></strong></li>
+                </h4>
+            </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <?php else: ?>
         <p>There are no Categories at the moment.</p>

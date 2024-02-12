@@ -7,5 +7,15 @@ use App\Models\Invoice;
 
 class invoiceController extends Controller
 {
-    //
+    public function createInvoice(){
+
+    }
+
+    public function store(){
+
+    }
+
+    public function display(){
+
+    }
 }

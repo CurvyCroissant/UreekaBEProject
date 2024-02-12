@@ -13,12 +13,12 @@ class IsAdmin
         
         if(auth()->guest())
         {
-            abort(403);
+            return redirect()->route('home');
         }
 
         if(auth()->user()->is_admin != 1)
         {
-            abort(403);
+            return redirect()->route('library');
         }
 
         return $next($request);

@@ -7,9 +7,11 @@
 
     @if (count($categories) > 0)
         @foreach ($categories as $category)
-            <h4>
-                <li><strong><a>{{ $category['name'] }}</a></strong></li>
-            </h4>
+            <div class="mb-4">
+                <h4>
+                    <li><strong><a>{{ $category['name'] }}</a></strong></li>
+                </h4>
+            </div>
         @endforeach
     @else
         <p>There are no Categories at the moment.</p>
