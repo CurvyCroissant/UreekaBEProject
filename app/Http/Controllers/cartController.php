@@ -28,9 +28,12 @@ class cartController extends Controller
 
     public function display(Cart $cart)
     {
+        $invoice = $cart->invoice;
+        
         return view('cartDisplay', [
             'title' => 'Cart',
-            'cart' => $cart
+            'cart' => $cart,
+            'invoice' => $invoice,
         ]);
     }
 

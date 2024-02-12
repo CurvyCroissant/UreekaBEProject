@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <img src="{{ asset('storage/images/' . $item->image) }}" alt="&nbsp;&nbsp;'{{ $item->name }}' Image">
+    <img src="{{ asset('storage/images/' . $item->image) }}" alt="&nbsp;&nbsp;'{{ $item->name }}' Image" height="70">
     <br>
     <br>
     <p><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>{{ $item['name'] }}</p>

@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('container'); ?>
-    <img src="<?php echo e(asset('storage/images/' . $item->image)); ?>" alt="&nbsp;&nbsp;'<?php echo e($item->name); ?>' Image">
+    <img src="<?php echo e(asset('storage/images/' . $item->image)); ?>" alt="&nbsp;&nbsp;'<?php echo e($item->name); ?>' Image" height="70">
     <br>
     <br>
     <p><strong>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><?php echo e($item['name']); ?></p>

@@ -4,6 +4,9 @@
     <h1 class="mb-4">Cart</h1>
     <br>
 
+    {{-- UNFINISHEDDD!!!!!!!!!! --}}
+    <a href="{{ route('invoice.create', ['invoice' => $invoice->id]) }}" class="btn btn-primary">Create Invoice</a>
+
     <h3>Items:</h3>
     <br>
     @forelse($cart->item as $item)

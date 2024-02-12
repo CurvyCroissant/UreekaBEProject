@@ -20,7 +20,8 @@ return new class extends Migration
             $table->bigInteger('quantity');
             $table->string('sender_address');
             $table->string('post_code');
-            $table->BigInteger('total');
+            $table->bigInteger('subtotal');
+            $table->bigInteger('total');
             $table->timestamps();
         });
     }

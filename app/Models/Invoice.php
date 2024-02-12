@@ -13,6 +13,7 @@ class Invoice extends Model
         'cart_id',
         'sender_address',
         'post_code',
+        'subtotal',
         'total',
         'quantity',
     ];
@@ -21,6 +22,6 @@ class Invoice extends Model
         return $this->belongsTo(Cart::class);
     }
 
-    protected $table = 'invoice';
+    protected $table = 'invoices';
 
 }

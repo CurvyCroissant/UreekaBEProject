@@ -4,6 +4,9 @@
     <h1 class="mb-4">Cart</h1>
     <br>
 
+
+    <a href="<?php echo e(route('invoice.create', ['invoice' => $invoice->id])); ?>" class="btn btn-primary">Create Invoice</a>
+
     <h3>Items:</h3>
     <br>
     <?php $__empty_1 = true; $__currentLoopData = $cart->item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
