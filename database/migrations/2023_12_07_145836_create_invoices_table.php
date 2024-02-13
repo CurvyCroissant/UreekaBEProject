@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts');
-            $table->bigInteger('quantity');
-            $table->string('sender_address');
-            $table->string('post_code');
-            $table->bigInteger('subtotal');
-            $table->bigInteger('total');
+            $table->json('quantity')->nullable();
+            $table->json('sender_address')->nullable();
+            $table->json('post_code')->nullable();
+            $table->json('subtotal')->nullable();
+            $table->json('total')->nullable();
             $table->timestamps();
         });
     }

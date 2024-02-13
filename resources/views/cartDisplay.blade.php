@@ -4,9 +4,11 @@
     <h1 class="mb-4">Cart</h1>
     <br>
 
-    {{-- UNFINISHEDDD!!!!!!!!!! --}}
-    <a href="{{ route('invoice.create', ['invoice' => $invoice->id]) }}" class="btn btn-primary">Create Invoice</a>
-
+    @if ($cartData && $cartData->isNotEmpty())
+        <a href="/create-invoice/{{ $cart['id'] }}" class="btn btn-dark">Invoice</a>
+        <br>
+    @endif
+    <br>
     <h3>Items:</h3>
     <br>
     @forelse($cart->item as $item)

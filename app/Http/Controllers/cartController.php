@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Invoice;
 
 class cartController extends Controller
 {
@@ -29,11 +30,13 @@ class cartController extends Controller
     public function display(Cart $cart)
     {
         $invoice = $cart->invoice;
-        
+        $cartData = $cart->item;
+
         return view('cartDisplay', [
             'title' => 'Cart',
             'cart' => $cart,
             'invoice' => $invoice,
+            'cartData' => $cartData,
         ]);
     }
 

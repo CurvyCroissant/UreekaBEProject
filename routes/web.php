@@ -49,7 +49,7 @@ Route::get('/cart/{cart:id}', [cartController::class, 'display'])->middleware('a
 
 
 // Invoice Controller
-Route::get('/create-invoice/{invoice:id}', [invoiceController::class, 'createInvoice'])->middleware('auth')->name('invoice.create');
-Route::post('/store-invoice/{invoice:id}', [invoiceController::class, 'store'])->middleware('auth');
-Route::get('/display-invoice/{invoice:id}', [invoiceController::class, 'display'])->middleware('auth');
+Route::get('/create-invoice/{cart:id}', [invoiceController::class, 'createInvoice'])->middleware('auth')->name('invoice.create');
+Route::post('/store-invoice/{cart:id}', [invoiceController::class, 'store'])->middleware('auth')->name('invoice.store');
+Route::get('/display-invoice/{invoice:id}', [invoiceController::class, 'display'])->middleware('auth')->name('invoice.display');
 

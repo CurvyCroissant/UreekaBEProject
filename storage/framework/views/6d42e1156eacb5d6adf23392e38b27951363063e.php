@@ -1,32 +1,32 @@
-@extends('layouts.main')
 
-@section('container')
+
+<?php $__env->startSection('container'); ?>
     <h1>Create Invoice</h1>
     <br>
-    <h3>Invoice ID: {{ $cart->id }}</h3>
+    <h3>Invoice ID: <?php echo e($cart->id); ?></h3>
     <br>
 
-    <form action="{{ route('invoice.store', ['cart' => $cart->id]) }}" method="post" enctype="multipart/form-data">
-        @csrf
-        @foreach ($cart->item as $item)
-            @if ($item->quantity > 0)
+    <form action="<?php echo e(route('invoice.store', ['cart' => $cart->id])); ?>" method="post" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <?php $__currentLoopData = $cart->item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($item->quantity > 0): ?>
                 <ul>
                     <li>
-                        <h5>{{ $item->name }}</h5>
+                        <h5><?php echo e($item->name); ?></h5>
                     </li>
                 </ul>
 
                 <div class="mb-2">
                     <label for="category" class="form-label">Category:</label>
                     <input type="text" class="form-control" id="category" name="category"
-                        value="{{ $item->category->name }}" disabled>
+                        value="<?php echo e($item->category->name); ?>" disabled>
                 </div>
                 <div class="mb-2">
                     <label for="quantity" class="form-label">Quantity:</label>
                     <select class="form-select" id="quantity" name="quantity" required onchange="updateSubtotal()">
-                        @for ($i = 0; $i <= $item->quantity; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor
+                        <?php for($i = 0; $i <= $item->quantity; $i++): ?>
+                            <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
+                        <?php endfor; ?>
                     </select>
                 </div>
                 <div class="mb-2">
@@ -34,19 +34,19 @@
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
                         <input type="text" class="form-control" id="subtotal" name="subtotal"
-                            value="{{ $item->price * old('quantity') }}" disabled>
+                            value="<?php echo e($item->price * old('quantity')); ?>" disabled>
                     </div>
                 </div>
                 <br>
-            @else
+            <?php else: ?>
                 <ul>
                     <li>
-                        <h5>{{ $item->name }}</h5>
+                        <h5><?php echo e($item->name); ?></h5>
                     </li>
                 </ul>
                 <h5>Item is out of stock! Please wait for admin to restock.</h5>
-            @endif
-        @endforeach
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <br>
         <div class="mb-2">
             <label for="sender_address" class="form-label">Sender Address:</label>
@@ -60,7 +60,7 @@
             <label for="total" class="form-label"><strong>Total:</strong></label>
             <div class="input-group">
                 <span class="input-group-text">Rp.</span>
-                <input type="text" class="form-control" id="total" name="total" value="{{ $invoice->total }}"
+                <input type="text" class="form-control" id="total" name="total" value="<?php echo e($invoice->total); ?>"
                     disabled>
             </div>
         </div>
@@ -71,11 +71,13 @@
     <script>
         function updateSubtotal() {
             var quantity = document.getElementById('quantity').value;
-            var price = {{ $item->price }};
+            var price = <?php echo e($item->price); ?>;
             var subtotal = quantity * price;
             document.getElementById('subtotal').value = subtotal;
         }
     </script>
     <br>
     <br>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/invoiceCreate.blade.php ENDPATH**/ ?>
