@@ -11,15 +11,16 @@ class Invoice extends Model
 
     protected $fillable = [
         'cart_id',
+        'sender_address',
+        'post_code',
+        'total',
     ];
 
     protected $casts = [
-        'sender_address',
-        'post_code',
-        'subtotal',
-        'total',
-        'quantity',
+        'subtotal' => 'json',
+        'quantity' => 'json',
     ];
+
     public function cart(){
         return $this->belongsTo(Cart::class);
     }

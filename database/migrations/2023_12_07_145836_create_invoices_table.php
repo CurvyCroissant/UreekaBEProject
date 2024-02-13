@@ -18,10 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts');
             $table->json('quantity')->nullable();
-            $table->json('sender_address')->nullable();
-            $table->json('post_code')->nullable();
+            $table->string('sender_address')->nullable();
+            $table->string('post_code')->nullable();
             $table->json('subtotal')->nullable();
-            $table->json('total')->nullable();
+            $table->bigInteger('total')->nullable();
             $table->timestamps();
         });
     }

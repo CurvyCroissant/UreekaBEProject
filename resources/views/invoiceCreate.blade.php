@@ -8,7 +8,10 @@
 
     <form action="{{ route('invoice.store', ['cart' => $cart->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
-        @foreach ($cart->item as $item)
+        @php
+            $total = 0;
+        @endphp
+        @foreach ($cart->item as $index => $item)
             @if ($item->quantity > 0)
                 <ul>
                     <li>
@@ -17,26 +20,31 @@
                 </ul>
 
                 <div class="mb-2">
-                    <label for="category" class="form-label">Category:</label>
-                    <input type="text" class="form-control" id="category" name="category"
-                        value="{{ $item->category->name }}" disabled>
+                    <label for="category{{ $index }}" class="form-label">Category:</label>
+                    <input type="text" class="form-control" id="category{{ $index }}" name="category[]"
+                        value="{{ $item->category->name }}" readonly>
                 </div>
                 <div class="mb-2">
-                    <label for="quantity" class="form-label">Quantity:</label>
-                    <select class="form-select" id="quantity" name="quantity" required onchange="updateSubtotal()">
+                    <label for="quantity{{ $index }}" class="form-label">Quantity:</label>
+                    <select class="form-select" name="quantity[]" required onchange="updateSubtotal({{ $index }})"
+                        id="quantity{{ $index }}">
                         @for ($i = 0; $i <= $item->quantity; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label for="subtotal" class="form-label">Sub-Total:</label>
+                    <label for="subtotal{{ $index }}" class="form-label">Sub-Total:</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="text" class="form-control" id="subtotal" name="subtotal"
-                            value="{{ $item->price * old('quantity') }}" disabled>
+                        <input type="text" class="form-control" name="subtotal[]"
+                            value="{{ $item->price * old('quantity.' . $index, 0) }}" readonly
+                            id="subtotal{{ $index }}">
                     </div>
                 </div>
+                @php
+                    $total += $item->price * old('quantity.' . $index, 0);
+                @endphp
                 <br>
             @else
                 <ul>
@@ -49,6 +57,14 @@
         @endforeach
         <br>
         <div class="mb-2">
+            <label for="total" class="form-label"><strong>Total:</strong></label>
+            <div class="input-group">
+                <span class="input-group-text">Rp.</span>
+                <input type="text" class="form-control" id="total" name="total" value="{{ $total }}"
+                    readonly>
+            </div>
+        </div>
+        <div class="mb-2">
             <label for="sender_address" class="form-label">Sender Address:</label>
             <input type="text" class="form-control" id="sender_address" name="sender_address" required>
         </div>
@@ -56,24 +72,26 @@
             <label for="post_code" class="form-label">Post Code:</label>
             <input type="text" class="form-control" id="post_code" name="post_code" required>
         </div>
-        <div class="mb-2">
-            <label for="total" class="form-label"><strong>Total:</strong></label>
-            <div class="input-group">
-                <span class="input-group-text">Rp.</span>
-                <input type="text" class="form-control" id="total" name="total" value="{{ $invoice->total }}"
-                    disabled>
-            </div>
-        </div>
         <br>
         <button type="submit" class="btn btn-dark">Create</button>
     </form>
 
     <script>
-        function updateSubtotal() {
-            var quantity = document.getElementById('quantity').value;
-            var price = {{ $item->price }};
+        function updateSubtotal(index) {
+            var quantity = document.getElementsByName('quantity[]')[index].value;
+            var price = {{ $cart->item[$index]->price }};
             var subtotal = quantity * price;
-            document.getElementById('subtotal').value = subtotal;
+            document.getElementsByName('subtotal[]')[index].value = subtotal;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            var total = 0;
+            var subtotals = document.getElementsByName('subtotal[]');
+            subtotals.forEach(function(subtotal) {
+                total += parseFloat(subtotal.value);
+            });
+            document.getElementById('total').value = total;
         }
     </script>
     <br>

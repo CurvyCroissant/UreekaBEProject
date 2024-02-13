@@ -39,15 +39,15 @@ class invoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cart_id' => 'required|exists:carts,id',
+            'cart_id' => 'required|exists:cart,id',
             'sender_address' => 'required|string|min:10|max:100',
             'post_code' => 'required|string|min:5|max:10',
-            'subtotal' => 'required|integer',
+            'subtotal.*' => 'required|integer',
             'total' => 'required|integer',
-            'quantity' => 'required|integer',
+            'quantity.*' => 'required|integer',
         ]);
 
-        $invoice = Invoice::where('cart_id', $request->cart_id)->first();
+        $invoice = Invoice::where('cart_id', $request->cart_id)->firstOrFail();
 
         $invoice->update([
             'sender_address' => $request->sender_address,
@@ -60,11 +60,15 @@ class invoiceController extends Controller
         return redirect()->route('invoice.display', $invoice->id);
     }
 
+
     public function display(Invoice $invoice)
     {
+        $invoice->load('cart', 'cart.item');
+
         $cart = $invoice->cart;
         $item = $cart->item ?? [];
+        $title = 'Invoice Display';
 
-        return view('invoiceDisplay', compact('invoice', 'cart', 'item'));
+        return view('invoiceDisplay', compact('invoice', 'cart', 'item', 'title'));
     }
 }
