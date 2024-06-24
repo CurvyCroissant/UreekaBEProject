@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>Welcome to PT Meksiko's Shopping Website!</h1>
+    <h1>Welcome to Lebron's Library!</h1>
     <br>
 
     @auth
@@ -16,7 +16,7 @@
         @endif
     @else
         <div>
-            <h4>Log in to access website features.</h4>
+            <h4>Login to access website features.</h4>
         </div>
     @endauth
 @endsection

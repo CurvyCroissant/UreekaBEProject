@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid ms-5">
-            <a class="navbar-brand" href="/">PT Meksiko</a>
+            <a class="navbar-brand" href="/">Lebron's Library</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,12 @@
                                 href="<?php echo e(route('library')); ?>">Catalog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo e($title === 'Categories' ? 'active' : ''); ?>" href="<?php echo e(route('categories')); ?>">Categories</a>
+                            <a class="nav-link <?php echo e($title === 'Categories' ? 'active' : ''); ?>"
+                                href="<?php echo e(route('categories')); ?>">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo e($title === 'Cart' ? 'active' : ''); ?>" href="<?php echo e(route('cart.display', ['cart' => auth()->user()->cart->id])); ?>">Cart</a>
+                            <a class="nav-link <?php echo e($title === 'Cart' ? 'active' : ''); ?>"
+                                href="<?php echo e(route('cart.display', ['cart' => auth()->user()->cart->id])); ?>">Cart</a>
                         </li>
                     <?php endif; ?>
 
@@ -80,4 +82,4 @@
 </script>
 
 </html>
-<?php /**PATH C:\CODING\(BINUS) Programs\BNCC Class\BackendFP\resources\views/layouts/main.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\CODING\(BINUS) Programs\Ureeka\UreekaBEProject\resources\views/layouts/main.blade.php ENDPATH**/ ?>

@@ -11,7 +11,7 @@ use App\Http\Controllers\cartController;
 
 Route::get('/', function () {
     return view('welcome', [
-        'title' => 'PT Meksiko'
+        'title' => 'Lebron\'s Library'
     ]);
 })->name('home');
 
@@ -52,4 +52,3 @@ Route::get('/cart/{cart:id}', [cartController::class, 'display'])->middleware('a
 Route::get('/create-invoice/{cart:id}', [invoiceController::class, 'createInvoice'])->middleware('auth')->name('invoice.create');
 Route::post('/store-invoice/{cart}', [invoiceController::class, 'store'])->middleware('auth')->name('invoice.store');
 Route::get('/display-invoice/{cart:id}', [invoiceController::class, 'display'])->middleware('auth')->name('invoice.display');
-
