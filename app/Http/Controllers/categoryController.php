@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class categoryController extends Controller
 {
-    public function createCategory(){
-        return view('createCategory',[
+    public function createCategory()
+    {
+        return view('createCategory', [
             'title' => 'Create Category'
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|string'
         ]);
@@ -25,8 +27,9 @@ class categoryController extends Controller
         return redirect('/categories');
     }
 
-    public function index(){
-        return view('CategoriesIndex',[
+    public function index()
+    {
+        return view('CategoriesIndex', [
             'title' => 'Categories',
             'categories' => Category::all()
         ]);

@@ -20,7 +20,7 @@ class CreateUserCartAndInvoice
     public function handle(Registered $event)
     {
         $userId = $event->user->id;
-        
+
         $cart = $this->cartController->createForUser($userId);
 
         $invoice = $this->invoiceController->createInvoiceForCart($cart->id);

@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class registerController extends Controller
 {
-    public function register(){
-        return view('register.index',[
+    public function register()
+    {
+        return view('register.index', [
             'title' => 'New User Registration'
         ]);
     }
 
-    public function store(Request $request, User $user){
+    public function store(Request $request, User $user)
+    {
 
         $validatedData = $request->validate([
             'name' => 'required|min:3|max:40',

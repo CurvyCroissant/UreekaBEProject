@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class itemController extends Controller
 {
-    public function createItem(){
+    public function createItem()
+    {
         $categories = Category::all();
 
         return view('createItem', [
@@ -17,7 +18,8 @@ class itemController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
             'name' => 'required|string|min:5|max:80',
@@ -28,7 +30,7 @@ class itemController extends Controller
         ]);
 
         $extension = $request->file('image')->getClientOriginalExtension();
-        $filename = $request->name.'-'.$request->category_id.'.'.$extension;
+        $filename = $request->name . '-' . $request->category_id . '.' . $extension;
         $request->file('image')->storeAs('public/images', $filename);
         Item::create([
             'name' => $request->name,
@@ -41,7 +43,8 @@ class itemController extends Controller
         return redirect('/library');
     }
 
-    public function index(){
+    public function index()
+    {
         $items = Item::all();
 
         return view('library', [
@@ -50,7 +53,8 @@ class itemController extends Controller
         ]);
     }
 
-    public function display(Item $item){
+    public function display(Item $item)
+    {
 
         $cart = auth()->user()->cart;
 
@@ -61,19 +65,22 @@ class itemController extends Controller
         ]);
     }
 
-    public function delete(Item $item){
+    public function delete(Item $item)
+    {
         $item->delete();
         return redirect('/library');
     }
 
-    public function edit(Item $item){
+    public function edit(Item $item)
+    {
         return view('editItem', [
             'title' => 'Edit Item',
             'item' => $item
         ]);
     }
 
-    public function update(Item $item, Request $request){
+    public function update(Item $item, Request $request)
+    {
         $request->validate([
             'name' => 'required|string|min:5|max:80',
             'price' => 'required|integer',
@@ -89,5 +96,3 @@ class itemController extends Controller
         return redirect('/display-item/' . $item->id);
     }
 }
-
-
