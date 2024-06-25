@@ -2,55 +2,42 @@
 
 
 @section('container')
-    <h1>Create Item</h1>
+    <h1>Add a New Book</h1>
 
     <form action = "/store-item" method = "POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name = "name"
-                value = "{{ old('name') }}">
-            @error('name')
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name = "title"
+                value = "{{ old('title') }}">
+            @error('title')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <select class="form-select" id="category" aria-describedby="emailHelp" name = "category_id"
-                value = "{{ old('category_id') }}">
-                <option selected>Select One</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-            @error('category_id')
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" class="form-control" id="isbn" aria-describedby="emailHelp" name = "isbn"
+                value = "{{ old('isbn') }}">
+            @error('isbn')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <div class="input-group">
-                <span class="input-group-text">Rp.</span>
-                <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
-            </div>
-            @error('price')
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" aria-describedby="emailHelp" name = "author"
+                value = "{{ old('author') }}">
+            @error('author')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control" id="quantity" name = "quantity" value = "{{ old('quantity') }}">
-            @error('quantity')
+            <label for="publication_year" class="form-label">Publication Year</label>
+            <input type="number" class="form-control" id="publication_year" name = "publication_year"
+                value = "{{ old('publication_year') }}">
+            @error('publication_year')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image" name = "image" value = "{{ old('image') }}">
-            @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 @endsection

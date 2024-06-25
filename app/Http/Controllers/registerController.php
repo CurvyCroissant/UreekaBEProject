@@ -12,7 +12,7 @@ class registerController extends Controller
     public function register()
     {
         return view('register.index', [
-            'title' => 'New User Registration'
+            'title' => 'Registration Page'
         ]);
     }
 
@@ -29,8 +29,6 @@ class registerController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         $createdUser = $user->create($validatedData);
-
-        event(new Registered($createdUser));
 
         return redirect('/login');
     }

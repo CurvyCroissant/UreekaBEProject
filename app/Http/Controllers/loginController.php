@@ -10,7 +10,7 @@ class loginController extends Controller
     public function login()
     {
         return view('login.index', [
-            'title' => 'User Login'
+            'title' => 'Login Page'
         ]);
     }
 

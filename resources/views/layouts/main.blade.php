@@ -25,15 +25,7 @@
                     @auth
                         <li class="nav-item">
                             <a class="nav-link {{ $title === 'Library' ? 'active' : '' }}"
-                                href="{{ route('library') }}">Catalog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ $title === 'Categories' ? 'active' : '' }}"
-                                href="{{ route('categories') }}">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ $title === 'Cart' ? 'active' : '' }}"
-                                href="{{ route('cart.display', ['cart' => auth()->user()->cart->id]) }}">Cart</a>
+                                href="{{ route('library') }}">Collection</a>
                         </li>
                     @endauth
 

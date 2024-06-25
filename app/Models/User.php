@@ -24,10 +24,6 @@ class User extends Authenticatable
     {
         return $this->is_admin == 1;
     }
-    
-    public function cart(){
-        return $this->hasOne(Cart::class);
-    }
 
     protected $table = 'users';
 

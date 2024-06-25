@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
 class itemController extends Controller
 {
     public function createItem()
     {
-        $categories = Category::all();
-
         return view('createItem', [
-            'title' => 'Create Item',
-            'categories' => $categories
+            'title' => 'Add New Book',
         ]);
     }
 
@@ -22,22 +18,17 @@ class itemController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|string|min:5|max:80',
-            'category_id' => 'required',
-            'price' => 'required|integer',
-            'quantity' => 'required|integer',
-            'image' => 'required'
+            'title' => 'required|string|min:1|max:100',
+            'isbn' => 'required|string|unique:items',
+            'author' => 'required|string|min:1|max:100',
+            'publication_year' => 'required|integer|digits:4',
         ]);
 
-        $extension = $request->file('image')->getClientOriginalExtension();
-        $filename = $request->name . '-' . $request->category_id . '.' . $extension;
-        $request->file('image')->storeAs('public/images', $filename);
         Item::create([
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'image' => $filename
+            'title' => $request->title,
+            'isbn' => $request->isbn,
+            'author' => $request->author,
+            'publication_year' => $request->publication_year,
         ]);
 
         return redirect('/library');
@@ -56,12 +47,9 @@ class itemController extends Controller
     public function display(Item $item)
     {
 
-        $cart = auth()->user()->cart;
-
         return view('displayItem', [
             'title' => 'Item Display',
             'item' => $item,
-            'cart' => $cart,
         ]);
     }
 
@@ -82,15 +70,17 @@ class itemController extends Controller
     public function update(Item $item, Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:5|max:80',
-            'price' => 'required|integer',
-            'quantity' => 'required|integer'
+            'title' => 'required|string|min:1|max:100',
+            'isbn' => 'required|string',
+            'author' => 'required|string|min:1|max:100',
+            'publication_year' => 'required|integer|digits:4',
         ]);
 
         $item->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity
+            'title' => $request->title,
+            'isbn' => $request->isbn,
+            'author' => $request->author,
+            'publication_year' => $request->publication_year,
         ]);
 
         return redirect('/display-item/' . $item->id);
